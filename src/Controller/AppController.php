@@ -58,64 +58,11 @@ class AppController extends Controller
         //$this->loadComponent('Csrf');
     }
     
-    public function beforeFilter(Event $event)
-    {
-        
-        //$requestURL = $this->request->here();
-       
-        // if (strpos($requestURL, '/api/') === false) 
-        // {
-        //   //return $this->redirect('/welcome.php');
-        // }
-        // else
-        // {
-        //     $apiKey=$this->request->header('ApiKey');
-        //     if(!$apiKey)
-        //     {
-        //         throw new UnauthorizedException("Please Provide API Key.");
-        //     }
-        //     else 
-        //     {
-        //         $apiKeys = TableRegistry::get('api_keys');
-        //         $dbApikey =  $apiKeys
-        //                         ->find()
-        //                         ->where(['api_key'=>$apiKey,'is_active' => true])
-        //                         ->first();
-
-        //         if($dbApikey)
-        //         {
-        //             $blowfished = Security::hash($dbApikey->application_secret.'-'.$dbApikey->client_secret, 'sha1', true);
-        //             if ($blowfished === $dbApikey->api_key) {
-                        
-        //                 //return true; // Api key is correct.
-        //             }
-        //             else {
-        //                 throw new UnauthorizedException("2 Invalid Apikey! "); 
-        //             }
-        //         }
-        //         else {                   
-        //             throw new UnauthorizedException("3 Invalid Apikey!"); 
-        //         }
-        //     }
-        // }        
-    }
-    public function requestLogData(){
-       $requestlogs = TableRegistry::get('RequestLogs');
-       $requests=$requestlogs->newEntity();
-       $requests->data=serialize($this->request->getData());
-       $requests->header=serialize($this->request->getServerParams());
-       $requests->cookies=serialize($this->request->cookies);
-       $requests->uri=$this->request->here;
-       $requests->hostname=$this->request->header('host');
-       $requests->user_agent=$this->request->header('user_agent');
-       $requests->ip=$this->request->clientIp();
-       $requests->apikey=$this->request->header('apikey');
-      if($requestlogs->save($requests)){}
-
-    }
+   
+    
     public function beforeRender(Event $event)
     {
-        $this->requestLogData();
+        
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
         ) {

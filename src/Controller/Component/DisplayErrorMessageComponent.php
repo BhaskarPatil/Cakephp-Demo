@@ -9,7 +9,7 @@ use Cake\Network\Exception\NotFoundException;
 
 class DisplayErrorMessageComponent extends Component
 {
-
+  //Testing
    public function getErrorMessage($entity,$statusCode)
    {
    	try

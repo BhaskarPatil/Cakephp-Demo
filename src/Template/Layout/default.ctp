@@ -76,7 +76,7 @@ $cakeDescription = 'Etech Enterprise';
         <?= $this->element('left-nav') ?>
         <?= $this->fetch('content') ?>
         <footer class="main-footer">
-        <strong>Copyright &copy; <?=date('Y')?> <a href="">Etech Enterprise</a>.</strong> All rights
+        <strong>Copyright &copy; <?=date('Y')?> <a href=""></a>.</strong> All rights
                 reserved.
         </footer>
         <div class="control-sidebar-bg"></div>
